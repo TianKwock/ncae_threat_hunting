@@ -16,7 +16,7 @@ find / -type f -cmin -5 2>/dev/null
 
 `ls -l` for modify timestamp, `ls -lc` for change timestamp, and `ls -lu` for access timestamp, or `stat <file>` for all of them
 
-`cat /etc/passwd | g[](url)rep ":0:"` 
+`cat /etc/passwd | grep ":0:"` 
 
 `groups <user>` to list all groups that a user belongs to
 
@@ -54,6 +54,13 @@ Rootkit Hunter
 
 ## Process Analysis
 
+`ps -eFH | less` will select all processes (-e), return in extra full format (-F), and show the process hierarchy (-H)
 
+`sudo lsof -p <PID>` can be useful for connecting dots if you find something sus in the output of the previous command
+
+`pstree -p -s <PID>` can be used to identify the origin of sus processes
+
+`top -d 5 -c -u <user>` will show processes relating to a user that updates dynamically
+every 5 seconds
 
 
