@@ -93,3 +93,15 @@ Cron execution logs are stored in either /var/log/syslog (Debian) or /var/log/cr
 
 `sudo journalctl -f -u <service>` will shows service logs. -f for real-time and -u to specify the service 
 
+### Autostart Scripts
+
+System-wide: Typically start when OS boots. /etc/init.d/ , /etc/rc.d/ , /etc/systemd/system/
+
+User-speficic: Typically executed when a user logs in. ~/.config/autostart/ , ~/.config/
+
+`ls -a /home/*/.config/autostart` can give you a good idea of what's going on with the users
+
+Other places to snoop around in: ~/.bash_history , ~/.ssh , ~/.profile , /etc/update-motd.d/ , /usr/lib/update-notifier/
+
+
+
