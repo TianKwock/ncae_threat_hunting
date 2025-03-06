@@ -52,6 +52,8 @@ Rootkit Hunter
 
 `cat /var/log/rkhunter.log | grep "Warning"` can be run after the scan to focus on things that rkhunter found sus, be sure to capitalize 'Warning'
 
+## Process Analysis
+
 
 
 
