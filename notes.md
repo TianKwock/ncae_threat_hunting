@@ -103,5 +103,7 @@ User-speficic: Typically executed when a user logs in. ~/.config/autostart/ , ~/
 
 Other places to snoop around in: ~/.bash_history , ~/.ssh , ~/.profile , /etc/update-motd.d/ , /usr/lib/update-notifier/
 
+## Linux Priv Esc 
 
+`uname -a` or `cat /proc/version` can give details about the system
 
