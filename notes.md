@@ -40,7 +40,7 @@ find / -type f -cmin -5 2>/dev/null
 
 `find / -perm -u=s -type f 2>/dev/null | grep -e "python" -e "var"` searches for files with the SUID bit, optionally add the grep part to limit the search to common sus things 
 
-`sudo cat /home/<user>/.bash_history | grep -C 3 "python"` if suspicious of a user, alternatively just look at their history without the grep part 
+`sudo cat /home/<user>/.bash_history | grep -C 3 "python"` run if suspicious of a user, alternatively just look at their history without the grep part 
 
 ### Rootkits 
 
@@ -62,5 +62,25 @@ Rootkit Hunter
 
 `top -d 5 -c -u <user>` will show processes relating to a user that updates dynamically
 every 5 seconds
+
+### Cronjobs
+
+Users can have their crontab file stored in the /var/spool/cron/crontabs directory, while /etc/crontab governs system-wide cronjobs. 
+
+`cat /etc/crontab` to check out the system-wide cronjobs
+
+`ls /etc/cron.hourly` , `ls /etc/cron.daily` , `ls /etc/cron.weekly` , `ls /etc/cron.monthly` , `ls /etc/cron.d` are all worth taking a look at, especially hourly, daily, and additional (cron.d)
+
+`sudo ls -la /var/spool/cron/crontabs` will give a good idea of what's going on with the users
+
+`sudo crontab -l | grep -v "#"` this may be slightly redundant i'm not 100% sure but its concise and may be a good replacement for the one where you ls a bunch of directories
+
+`sudo bash -c 'for user in $(cut -f1 -d: /etc/passwd); do entries=$(crontab -u $user -l 2>/dev/null | grep -v "^#"); if [ -n "$entries" ]; then echo "$user: Crontab entry found!"; echo "$entries"; echo; fi; done'` this command will loop through users on the system and identify if they have any user-level cronjobs (plus you can feel super cool doing it)
+
+Cron execution logs are stored in either /var/log/syslog (Debian) or /var/log/cron (RHEL / CentOS). To investigate them effectively, try the following commands:
+
+`sudo grep cron /var/log/syslog | grep -E 'failed|error|fatal'` to check for failed job executions
+
+`sudo grep cron /var/log/syslog | grep -i '<user>'` for sus users 
 
 
