@@ -75,7 +75,7 @@ Users can have their crontab file stored in the /var/spool/cron/crontabs directo
 
 `sudo crontab -l | grep -v "#"` this may be slightly redundant i'm not 100% sure but its concise and may be a good replacement for the one where you ls a bunch of directories
 
-`sudo bash -c 'for user in $(cut -f1 -d: /etc/passwd); do entries=$(crontab -u $user -l 2>/dev/null | grep -v "^#"); if [ -n "$entries" ]; then echo "$user: Crontab entry found!"; echo "$entries"; echo; fi; done'` this command will loop through users on the system and identify if they have any user-level cronjobs (plus you can feel super cool doing it)
+`sudo bash -c 'for user in $(cut -f1 -d: /etc/passwd); do entries=$(crontab -u $user -l 2>/dev/null | grep -v "^#"); if [ -n "$entries" ]; then echo "$user: Crontab entry found!"; echo "$entries"; echo; fi; done'` this command will loop through users on the system and identify if they have any user-level cronjobs 
 
 Cron execution logs are stored in either /var/log/syslog (Debian) or /var/log/cron (RHEL / CentOS). To investigate them effectively, try the following commands:
 
@@ -83,4 +83,13 @@ Cron execution logs are stored in either /var/log/syslog (Debian) or /var/log/cr
 
 `sudo grep cron /var/log/syslog | grep -i '<user>'` for sus users 
 
+`pspy64` can be useful for monitoring processes without need root privileges in real-time
+
+### Services
+
+`sudo systemctl list-units --all --type=service --state=running` will show currently running services 
+
+`sudo systemctl status <service>` and `cat /etc/systemd/system/<service>` if you find a sus service; look at status, main PID, and CGroup in the first command
+
+`sudo journalctl -f -u <service>` will shows service logs. -f for real-time and -u to specify the service 
 
