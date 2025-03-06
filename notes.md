@@ -83,7 +83,7 @@ Cron execution logs are stored in either /var/log/syslog (Debian) or /var/log/cr
 
 `sudo grep cron /var/log/syslog | grep -i '<user>'` for sus users 
 
-`pspy64` can be useful for monitoring processes without need root privileges in real-time
+`pspy64` can be useful for monitoring processes without needing root privileges in real-time
 
 ### Services
 
