@@ -113,3 +113,6 @@ Other places to snoop around in: ~/.bash_history , ~/.ssh , ~/.profile , /etc/up
 
 `curl -sL https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh | bash | tee linpeas_output.txt` for linpeas
 
+`find / -type f -perm -04000 -ls 2>/dev/null` to search for files with the SUID bit set. To remove the SUID bit, `chmod u-s <file>` will remove the SUID bit
+
+`gtcap -r / 2>/dev/null` will list enabled capabilites
