@@ -116,3 +116,5 @@ Other places to snoop around in: ~/.bash_history , ~/.ssh , ~/.profile , /etc/up
 `find / -type f -perm -04000 -ls 2>/dev/null` to search for files with the SUID bit set. To remove the SUID bit, `chmod u-s <file>` will remove the SUID bit
 
 `gtcap -r / 2>/dev/null` will list enabled capabilites
+
+`cat /etc/exports` if you see no_root_squash, it means that someone can create an executable with SUID bit set 
